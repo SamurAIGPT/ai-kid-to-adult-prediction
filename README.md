@@ -10,6 +10,7 @@
 ## 🌐 Project Details
 
 **GitHub Repository:** [github.com/SamurAIGPT/ai-kid-to-adult-prediction](https://github.com/SamurAIGPT/ai-kid-to-adult-prediction)
+**Live Demo:** [ai-kid-to-adult-prediction.vercel.app](https://ai-kid-to-adult-prediction.vercel.app/)
 
 ---
 
@@ -85,9 +86,9 @@ FutureSelf AI is a premium SaaS web application that predicts a child's future a
 4. **Build Script**: Project builds automatically using `prisma generate && next build`.
 5. **Database sync**: Run `npx prisma db push` to generate tables.
 6. **Callbacks**:
-   - Google: `https://your-app.vercel.app/api/auth/callback/google`
-   - Stripe Webhook: `https://your-app.vercel.app/api/stripe/webhook`
-   - MuAPI: `https://your-app.vercel.app/api/webhook/muapi`
+   - Google: `https://ai-kid-to-adult-prediction.vercel.app/api/auth/callback/google`
+   - Stripe Webhook: `https://ai-kid-to-adult-prediction.vercel.app/api/stripe/webhook`
+   - MuAPI: `https://ai-kid-to-adult-prediction.vercel.app/api/webhook/muapi`
 
 ---
 
