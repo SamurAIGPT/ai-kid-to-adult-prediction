@@ -1,9 +1,9 @@
-# 👶 AI Kid to Adult Prediction — FutureSelf AI SaaS
+# 👶 AI Kid to Adult Prediction — Open-Source AI Age Progression & Growth Simulator SaaS (Free FaceApp / AgePro Alternative)
 
-> **Predict how your child will look as a grown-up with stunning photorealistic accuracy.** Upload a portrait, pick a target age group, and view a photorealistic growth simulation using Google DeepMind's `nano-banana-2-edit` and `nano-banana-pro-edit` models. A production-ready, self-hostable Next.js SaaS.
+> **Predict photorealistic how a child will look as an adult with AI age progression.** A production-ready, self-hostable Next.js SaaS boilerplate with target age group selection, webhook-backed async delivery, and built-in Stripe billing. A free open-source alternative to FaceApp, AgePro, and Aging Booth — powered by the MuAPI AI engine.
 
-**Tech stack:** Next.js 16 (App Router) · Prisma · PostgreSQL · NextAuth (Google OAuth) · Stripe · Tailwind CSS (v4) · MuAPI (nano-banana) · Webhook-backed async delivery  
-**Use cases:** Creative growth simulation · Family digital albums · Social sharing · Personalized keepsakes and prints
+**Tech stack:** Next.js 14 (App Router) · Prisma · PostgreSQL · NextAuth (Google OAuth) · Stripe · Tailwind CSS · MuAPI nano-banana-2-edit · Webhook-backed async delivery
+**Use cases:** Family portrait apps · Parenting communities · Social media viral content · Photo gifting · Age prediction tools · Baby photo apps · Creative keepsakes · Family memory apps
 
 ![FutureSelf AI Interface](https://cdn.muapi.ai/data/2/294827515637/Screenshot_2026-05-29_165642.png)
 
