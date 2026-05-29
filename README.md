@@ -10,6 +10,7 @@
 ## 🌐 Project Details
 
 **GitHub Repository:** [github.com/SamurAIGPT/ai-kid-to-adult-prediction](https://github.com/SamurAIGPT/ai-kid-to-adult-prediction)
+
 **Live Demo:** [ai-kid-to-adult-prediction.vercel.app](https://ai-kid-to-adult-prediction.vercel.app/)
 
 ---
