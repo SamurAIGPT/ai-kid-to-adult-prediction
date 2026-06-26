@@ -457,12 +457,15 @@ export default function StudioPage() {
       if (!res.ok) throw new Error("Upload failed");
       const data = await res.json();
       setInputImage(data.url);
+      setInputPreview(data.url);
+      URL.revokeObjectURL(localUrl);
       setResultImage("");
       setGeneratingStatus("idle");
     } catch (err) {
       setGeneratingError("Failed to upload image. Please try again.");
       setGeneratingStatus("error");
       setInputPreview("");
+      URL.revokeObjectURL(localUrl);
     } finally {
       setIsUploading(false);
       try {
