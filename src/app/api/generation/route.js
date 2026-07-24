@@ -37,17 +37,23 @@ export async function POST(req) {
       return new NextResponse("Prompt is required", { status: 400 });
     }
 
-    // 1. Deduct credits based on model name and resolution
+    const headerApiKey = req.headers.get("x-custom-api-key");
+    const customApiKey = headerApiKey || body.customApiKey || session.user.customApiKey || null;
+    const isUsingCustomKey = Boolean(customApiKey && customApiKey.trim().length > 0);
+
+    // 1. Deduct credits based on model name and resolution (0 if using custom API Key)
     const modelCosts = (config.ai.generationCost && config.ai.generationCost[modelName]) || { "1k": 12, "2k": 18, "4k": 24 };
-    const cost = modelCosts[resolution] || 12;
-    try {
-      await UserService.deductCredits(session.user.id, cost);
-    } catch (e) {
-      return new NextResponse("Insufficient credits", { status: 402 });
+    const cost = isUsingCustomKey ? 0 : (modelCosts[resolution] || 12);
+    if (!isUsingCustomKey && cost > 0) {
+      try {
+        await UserService.deductCredits(session.user.id, cost);
+      } catch (e) {
+        return new NextResponse("Insufficient credits", { status: 402 });
+      }
     }
 
     // 2. Submit to MuAPI
-    const apiKey = config.ai.apiKey;
+    const apiKey = isUsingCustomKey ? customApiKey.trim() : config.ai.apiKey;
     let resultImage = "";
     let requestId = `mock_${Date.now()}`;
     let status = "processing";
@@ -69,7 +75,6 @@ export async function POST(req) {
           inputPayload.google_search = googleSearch === "true" || googleSearch === true;
           inputPayload.output_format = outputFormat;
         } else if (modelName === "nano-banana-pro-edit") {
-          // aspect ratio mapping for pro model (defaults to 1:1 if Auto is passed, otherwise keep selection)
           inputPayload.aspect_ratio = aspectRatio === "Auto" ? "1:1" : aspectRatio;
         }
 
@@ -149,12 +154,14 @@ export async function POST(req) {
       status = "completed";
     }
 
-    // Refund credits on immediate failure
+    // Refund credits on immediate failure (only if not using custom API key)
     if (status === "failed") {
-      try {
-        await UserService.addCredits(session.user.id, cost);
-      } catch (refundErr) {
-        console.error("Failed to refund credits:", refundErr);
+      if (!isUsingCustomKey && cost > 0) {
+        try {
+          await UserService.addCredits(session.user.id, cost);
+        } catch (refundErr) {
+          console.error("Failed to refund credits:", refundErr);
+        }
       }
       return NextResponse.json({ error: "Prediction failed" }, { status: 500 });
     }
@@ -173,11 +180,7 @@ export async function POST(req) {
       },
     });
 
-    return NextResponse.json({
-      id: record.id,
-      resultImage: record.resultImage,
-      status: record.status,
-    });
+    return NextResponse.json(record);
   } catch (error) {
     console.error("[GENERATION_POST]", error);
     return new NextResponse("Internal Error", { status: 500 });
