@@ -17,6 +17,11 @@
 
 https://github.com/user-attachments/assets/d413c104-0bc3-4c2d-8909-041ea407244c
 
+## Related Projects
+
+- [MuAPI image-editing playground](https://muapi.ai/playground/gpt-image-2-image-to-image?utm_source=github&utm_medium=readme&utm_campaign=ai-kid-to-adult-prediction) — create reference-image age-progression workflows
+- [MuAPI model catalog](https://muapi.ai/docs/models?utm_source=github&utm_medium=readme&utm_campaign=ai-kid-to-adult-prediction) — compare the available generation models
+
 ## 🌐 Project Details
 
 **GitHub Repository:** [github.com/SamurAIGPT/ai-kid-to-adult-prediction](https://github.com/SamurAIGPT/ai-kid-to-adult-prediction)
